@@ -17,13 +17,12 @@ async def connect_to_redis():
         redis_host = os.environ.get("REDIS", "localhost")
         redis_port = int(os.environ.get("REDIS_PORT", 6379))
         redis_password = os.environ.get("REDIS_PASSWORD", "")
-        skip_ssl = bool(os.environ.get("REDIS_SECURE_SKIP", "false"))
         connection = aredis.StrictRedis(
             host=redis_host,
             port=redis_port,
             password=redis_password,
             db=0,
-            ssl=not skip_ssl,
+            ssl=True,
         )
         logging.info("Connected to Redis")
         return connection
