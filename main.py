@@ -22,7 +22,7 @@ async def connect_to_redis():
             port=redis_port,
             password=redis_password,
             db=0,
-            ssl=True,
+            ssl=redis_host != "redis.hop",
         )
         logging.info("Connected to Redis")
         return connection
