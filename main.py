@@ -69,10 +69,10 @@ async def main():
     await ping_redis(redis_connection)
     await job(redis_connection)
 
-    schedule.every(5).seconds.do(lambda: asyncio.run(job(redis_connection)))
+    schedule.every(5).seconds.do(job, redis_connection)
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        await asyncio.sleep(1)
 
 
 if __name__ == "__main__":
