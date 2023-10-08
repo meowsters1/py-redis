@@ -74,7 +74,7 @@ async def main():
 
     while True:
         await job(redis_connection)
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
 
 
 if __name__ == "__main__":
