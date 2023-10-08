@@ -1,10 +1,9 @@
-import os
-import aredis
-import schedule
-import time
-import random
-import logging
 import asyncio
+import logging
+import os
+import random
+
+import aredis
 
 logging.basicConfig(
     level=logging.INFO,
@@ -69,10 +68,9 @@ async def main():
     await ping_redis(redis_connection)
     await job(redis_connection)
 
-    schedule.every(5).seconds.do(job, redis_connection)
     while True:
-        schedule.run_pending()
-        await asyncio.sleep(1)
+        await job(redis_connection)
+        await asyncio.sleep(5)
 
 
 if __name__ == "__main__":
