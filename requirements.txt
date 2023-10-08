@@ -1,0 +1,2 @@
+aredis==1.1.12
+schedule==1.1.0
